@@ -90,9 +90,13 @@ const ensureMigrationsTable = async (db: DBConnection, options: RunnerOption): P
       if (!primaryKeyConstraints || primaryKeyConstraints.length !== 1) {
         await db.query(`ALTER TABLE ${fullTableName} ADD PRIMARY KEY (${idColumn})`)
       }
-    } else {
+    } else if (!options.redshift) {
       await db.query(
         `CREATE TABLE ${fullTableName} ( ${idColumn} SERIAL PRIMARY KEY, ${nameColumn} varchar(255) NOT NULL, ${runOnColumn} timestamp NOT NULL)`,
+      )
+    } else {
+      await db.query(
+        `CREATE TABLE ${fullTableName} ( ${idColumn} IDENTITY(1,1) PRIMARY KEY, ${nameColumn} varchar(255) NOT NULL, ${runOnColumn} timestamp NOT NULL)`,
       )
     }
   } catch (err) {

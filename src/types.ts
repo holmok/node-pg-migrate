@@ -218,6 +218,7 @@ export interface RunnerOptionConfig {
   log?: LogFn
   logger?: Logger
   verbose?: boolean
+  redshift?: boolean
 }
 
 export interface ConnectionConfig {
