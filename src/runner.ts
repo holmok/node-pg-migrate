@@ -96,7 +96,7 @@ const ensureMigrationsTable = async (db: DBConnection, options: RunnerOption): P
       )
     } else {
       await db.query(
-        `CREATE TABLE ${fullTableName} ( ${idColumn} IDENTITY(1,1) PRIMARY KEY, ${nameColumn} varchar(255) NOT NULL, ${runOnColumn} timestamp NOT NULL)`,
+        `CREATE TABLE ${fullTableName} ( ${idColumn} INT IDENTITY(1,1) PRIMARY KEY, ${nameColumn} varchar(255) NOT NULL, ${runOnColumn} timestamp NOT NULL)`,
       )
     }
   } catch (err) {
