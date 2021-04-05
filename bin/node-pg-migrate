@@ -409,7 +409,7 @@ if (action === 'create') {
   const TIMESTAMP = argv[timestampArg]
   const rejectUnauthorized = argv[rejectUnauthorizedArg]
   const redshift = argv[redshiftArg]
-  
+
   const noLock = !argv[lockArg] && !argv[redshiftArg]
   if (noLock) {
     console.log('no lock')
